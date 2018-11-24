@@ -12,6 +12,7 @@ defmodule Edcc do
       :world
 
   """
-  def init(makefile, workers), do: Parser.parse(makefile) |> Client.run(workers)
+  def init(makefile, workers), do: Parser.getDeps(makefile) |> Client.run(workers)
 
+  def ignored_libs(), do: Parser.get_ignored_libs()
 end
