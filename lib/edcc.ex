@@ -14,5 +14,4 @@ defmodule Edcc do
   """
   def init(makefile, workers), do: Parser.getDeps(makefile) |> Client.run(workers)
 
-  def ignored_libs(), do: Parser.get_ignored_libs()
 end
