@@ -12,7 +12,6 @@ defmodule Edcc do
       :world
 
   """
-  def hello do
-    :world
-  end
+  def init(makefile, workers), do: Parser.parse(makefile) |> Client.run(workers)
+
 end
