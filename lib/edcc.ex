@@ -1,16 +1,10 @@
 defmodule Edcc do
   @moduledoc """
-  Documentation for Edcc.
+  Main module of the program.
   """
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Edcc.hello()
-      :world
-
+  It simply launches the command sequence that makes everything work.
   """
   def init(dir, workers), do: 
     File.cd!(dir, fn -> Parser.parse_actual_dir |> Client.run(workers) end)

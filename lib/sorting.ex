@@ -1,7 +1,14 @@
 defmodule Sorting do
+    @moduledoc """
+    Main module of the program.
+    """
+
+    @doc """
+    Sorts a list of filenames and a list of their dependencies.
+    """
     def sort(list, deps) do
         createDeps(list, deps, [])
-        |> Helper.get_rid_of(".c")
+        |> Helper.get_rid_of(".h", ".c")
     end
 
     defp getDeps(_, []), do: []
