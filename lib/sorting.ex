@@ -28,5 +28,6 @@ defmodule Sorting do
 
     def sort(list, deps) do
         createDeps(list, deps, [])
+        |> Parser.get_rid_of(".c")
     end
 end

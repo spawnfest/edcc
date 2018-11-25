@@ -29,4 +29,12 @@ defmodule Parser do
     |> Enum.map(fn x -> String.replace_prefix(x, "#include", "") end)
     |> Enum.map(fn x -> String.replace(x, "\"", "") end)
   end
+
+  def get_rid_of(files, str) do
+    to_get_rid_of = 
+    Enum.filter(files, fn x -> String.contains?(x, ".h") end)
+    |> Enum.map(fn x -> String.replace_suffix(x, ".h", str) end)
+    Enum.filter(files, fn x -> not Enum.member?(to_get_rid_of, x) end)
+  end
+  
 end
