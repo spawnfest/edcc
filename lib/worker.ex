@@ -9,20 +9,17 @@ defmodule Worker do
     {:ok, :ready}
   end
 
-  def handle_call(:getstate, _from, state) do
-		{:reply, state, state}
-	end
-
-  def handle_call({:preprocess, file}, _from, state) do
-		{:reply, Parser.file_deps(file), state}
-	end
-
-  def handle_cast({:preprocess, file}, _) do
+  def handle_call({:preprocess, file}, _from, _) do
     result = Parser.file_deps(file)
-    {:noreply, {:finished, result}}
-  end
+		{:reply, result, result}
+	end
 
-  def terminate(_,_) do
+  def handle_call({:compile, file}, _from, _) do
+    result = Compiler.compile(file)
+		{:reply, result, result}
+	end
+
+  def terminate(_, _) do
 		[]
 	end
 

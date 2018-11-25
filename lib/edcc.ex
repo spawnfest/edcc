@@ -12,6 +12,7 @@ defmodule Edcc do
       :world
 
   """
-  def init(makefile, workers), do: Parser.parse(makefile) |> Client.run(workers)
+  def init(dir, workers), do: 
+    File.cd!(dir, fn -> Parser.parse_actual_dir |> Client.run(workers) end)
 
 end

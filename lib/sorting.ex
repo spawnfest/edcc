@@ -1,4 +1,9 @@
 defmodule Sorting do
+    def sort(list, deps) do
+        createDeps(list, deps, [])
+        |> Helper.get_rid_of(".c")
+    end
+
     defp getDeps(_, []), do: []
     defp getDeps(file, [h|t]) do
         {file2, deps} = h
@@ -24,10 +29,5 @@ defmodule Sorting do
             contains(deps, result) -> createDeps(t, dependencies, result ++ [h])
             true -> createDeps(t ++ [h], dependencies, result)
         end
-    end
-
-    def sort(list, deps) do
-        createDeps(list, deps, [])
-        |> Parser.get_rid_of(".c")
     end
 end
