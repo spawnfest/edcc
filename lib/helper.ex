@@ -24,7 +24,7 @@ defmodule Helper do
         end
     end
 
-    def getTuple(file, []), do: []
+    def getTuple(_, []), do: []
     def getTuple(file, [{file, bin}|_]), do: {file, bin}
     def getTuple(file, [_|t]), do: getTuple(file, t)    
 end
