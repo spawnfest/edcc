@@ -18,7 +18,8 @@ defmodule Parser do
     working_dir = Path.dirname(name)
     getDeps(binary_file)         # since this is a proof of concept we will only be considering header (.h) files
     |> Enum.filter(fn x -> String.contains?(x, ".h") end)
-    |> Enum.filter(fn x -> Path.join(working_dir, x) |> File.exists?() end)
+    |> Enum.map(fn x -> Path.join(working_dir, x) end)
+    |> Enum.filter(fn x -> File.exists?(x) end)
   end
 
   def getDeps(binary_file) do
